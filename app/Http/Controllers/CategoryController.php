@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -34,9 +35,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        $cat=new Category;
+        $cat->category=$r->category;
+        if($r->has('image')){
+            $imageName=rand(111,999).time().'.'.$r->image->extension();
+            $r->image->move(public_path('uploads/category'),$imageName);
+            $cat->image=$imageName;
+        }
+        $cat->save();
+        return redirect()->route('category.index');
+
+
     }
 
     /**
@@ -58,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -68,9 +79,16 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $r, Category $category)
     {
-        //
+        $category->category=$r->category;
+        if($r->has('image')){
+            $imageName=rand(111,999).time().'.'.$r->image->extension();
+            $r->image->move(public_path('uploads/category'),$imageName);
+            $category->image=$imageName;
+        }
+        $category->save();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -81,6 +99,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // try{
+        //     if($category->products->coutn()>0){
+        //         return redirect()->back()->with('message','you have to delete all product under this category first.');
+        //     }else{
+        //         $category->delete();
+        //         return redirect()->back();
+        //     }
+        // }catch(Exception $e){
+        //     return redirect()->back();
+        // }
+        $category->delete();
+        return redirect()->back();
     }
 }

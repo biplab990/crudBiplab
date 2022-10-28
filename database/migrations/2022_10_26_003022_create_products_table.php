@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description',5000)->nullable();
             $table->decimal('price',10,2)->default(0);
             $table->integer('status')->default(1)->comment('0->inactive 1->active');
+            $table->string('image')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->index('category_id');
             $table->timestamps();

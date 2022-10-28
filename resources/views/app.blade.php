@@ -22,6 +22,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico')}}" />
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -75,7 +76,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -85,37 +86,41 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Layouts</div>
+                <div data-i18n="Layouts">Category</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
+                  <a href="{{ route('category.create') }}" class="menu-link">
+                    <div data-i18n="Without menu">Add</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
-                    <div data-i18n="Without navbar">Without navbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
-                    <div data-i18n="Container">Container</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div data-i18n="Blank">Blank</div>
+                  <a href="{{ route('category.index') }}" class="menu-link">
+                    <div data-i18n="Without navbar">List</div>
                   </a>
                 </li>
               </ul>
             </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Product</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('product.create') }}" class="menu-link">
+                      <div data-i18n="Without menu">Add</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{{ route('product.index') }}" class="menu-link">
+                      <div data-i18n="Without navbar">List</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
 
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>

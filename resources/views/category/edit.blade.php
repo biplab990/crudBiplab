@@ -8,12 +8,13 @@
             <small class="text-muted float-end">Default label</small>
         </div>
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" action="{{ route('category.store') }}">
+            <form method="post" enctype="multipart/form-data" action="{{ route('category.update',$category->id) }}">
                 @csrf
+                @method('put')
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="name">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="category"/>
+                        <input type="text" class="form-control" value="{{ $category->category }}" id="name" name="category"/>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -25,6 +26,7 @@
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">save</button>
+                        <img class="float-end" width="100px" src="{{ asset('uploads/category/'.$category->image) }}" alt="">
                     </div>
                 </div>
             </form>
